@@ -20,10 +20,28 @@ public class HomeController : Controller
         _logger = logger;
     }
 
+// -------------RENDER INDEX PAGE-------------
     public IActionResult Index()
     {
         HttpContext.Session.SetString("Name", "Mary");
         return View();
+    }
+
+// ---------POST FOR FORM------------------
+    [HttpPost("Login")]
+    public IActionResult Login(string Name)
+    {
+        HttpContext.Session.SetString("Name", Name);
+        // To store an int in session we use ".SetInt32"
+        HttpContext.Session.SetInt32("Number", 22);
+        
+        return RedirectToAction("Display");
+    }
+    
+    [HttpGet("Display")] //<--- Dashboard
+    public IActionResult Display();
+    {
+        return View("Display");
     }
 
     public IActionResult Privacy()
@@ -31,6 +49,9 @@ public class HomeController : Controller
         return View();
     }
 
+
+
+    
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

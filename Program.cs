@@ -1,3 +1,4 @@
+var builder = WebApplication.CreateBuilder(args);
 // AddHttpContextAccessor gives our views direct access to session
 // Add these two lines before calling the builder.Build() method
 // They fit nicely right after AddControllerWithViews() 
@@ -8,7 +9,6 @@ builder.Services.AddSession();
 // // It fits nicely with other Use statements like app.UseStaticFiles();
 
 
-var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
